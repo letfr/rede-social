@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+  <script src="firebase.js"></script>
+  <title>Rede social</title>
+</head>
+
+<body>
+  <form>
+    <fieldset>
+      <legend>Cadastro</legend>
+      <label>Nome</label>
+      <input type="text" class="sign-up-name" />
+      <label>Email</label>
+      <input type="text" class="sign-up-email" />
+      <label>Senha</label>
+      <input type="password" class="sign-up-password" />
+    </fieldset>
+    <button class="sign-up-button">Cadastro</button>
+  </form>
+
+  <form>
+    <fieldset>
+      <legend>Entrar</legend>
+      <label>Email</label>
+      <input type="text" class="sign-in-email" />
+      <label>Senha</label>
+      <input type="password" class="sign-in-password" />
+    </fieldset>
+    <button class="sign-in-button">Entrar</button>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
