@@ -1,6 +1,9 @@
 var database = firebase.database();
 
-$(document).ready(function() {
+$(document).ready(function () {
+  $('.intro').delay('4000').slideUp('slow');
+  $('.login').delay('4000').fadeIn('slow');
+
   $(".sign-up-button").click(signUpClick);
   $(".sign-in-button").click(signInClick);
 });
@@ -26,27 +29,27 @@ function signInClick(event) {
 
 function createUser(name, email, password) {
   firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then(function(response) {
-    if(response.operationType === "signIn") {
-      var userId = response.user.uid;
+    .then(function (response) {
+      if (response.operationType === "signIn") {
+        var userId = response.user.uid;
 
-      createUserInDB(userId, name, email);
-      signInRedirect(userId);
-    }
-  })
-  .catch(function(error) { handleError(error); });
+        createUserInDB(userId, name, email);
+        signInRedirect(userId);
+      }
+    })
+    .catch(function (error) { handleError(error); });
 }
 
 function loginUserAuth(email, password) {
   firebase.auth().signInWithEmailAndPassword(email, password)
-  .then(function(response) {
-    if(response.operationType === "signIn") {
-      var userId = response.user.uid;
-      
-      signInRedirect(userId);
-    }
-  })
-  .catch(function(error) { handleError(error); });
+    .then(function (response) {
+      if (response.operationType === "signIn") {
+        var userId = response.user.uid;
+
+        signInRedirect(userId);
+      }
+    })
+    .catch(function (error) { handleError(error); });
 }
 
 function createUserInDB(id, name, email) {
