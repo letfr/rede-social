@@ -104,26 +104,13 @@ form legend{
   outline: 0;
 }
 
-.privacy{
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #1da1f2;
-  font-weight: 600;
-  color: #fff;
-  border-radius: 5px;
-}
-
-.privacy:hover, .privacy:focus{
-  background-color: #0F557F;
-  cursor: pointer;
-  outline: 0;
-}
-
 .buttons-feed{
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-a i{
+option i{
   margin-right: 1vw;
 }
 @-webkit-keyframes pulse {

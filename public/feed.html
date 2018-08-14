@@ -17,19 +17,15 @@
   <div class="box box-post">
     <textarea type="text" rows="4" placeholder="" class="posts-input increase"></textarea>
     <div class="container">
-      <div class="buttons-feed d-flex row">
+      <div class="buttons-feed align-items-center">
         <button class="btn-post">POSTAR</button>
-        <div class="btn-group">
-          <button type="button" class="privacy btn">Privacidade</button>
-          <button type="button" class="btn privacy dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="caret"></span>
-            <span class="sr-only">Toggle Dropdown</span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="#"><i class="icon-lock-1"></i>Somente eu</i></a></li>
-            <li><a href="#"><i class="icon-users"></i>Amigos</i> </a></li>
-            <li><a href="#"><i class="icon-globe"></i>Todos</i> </a></li>
-          </ul>
+        <div class="privacy form-group col-md-3">
+          <label for="inputState">Privacidade</label>
+          <select id="inputState" class="form-control">
+            <option selected>Todos</option>
+            <option>Amigos</option>
+            <option>Somente eu</option>
+          </select>
         </div>
       </div>
     </div>
