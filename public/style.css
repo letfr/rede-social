@@ -110,9 +110,12 @@ form legend{
   justify-content: space-between;
 }
 
-option i{
-  margin-right: 1vw;
+.edit, .delete{
+  border-radius: 5px;
+  padding: 2px 3px;
+  margin-left: 1%;
 }
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
