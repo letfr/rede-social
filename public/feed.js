@@ -4,16 +4,6 @@ const USER_ID = getUserId();
 $(document).ready(function () {
   getUserPostsFromDB();
   $(".btn-post").on("click", addPost);
-
-  fetch("https://api.globalwinescore.com/globalwinescores/latest/?limit=20", {
-    method: "GET",  
-    headers: {
-      Accept: "application/json",
-      Authorization: "Token 77c4af878d9b673d7b80f4eee09f044f79d0152f"
-    }
-  })
-    .then(response => response.json())
-    .then(data => console.log(data));
 })
 
 
