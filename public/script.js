@@ -32,7 +32,6 @@ function createUser(name, email, password) {
     .then(function (response) {
       if (response.operationType === "signIn") {
         var userId = response.user.uid;
-
         createUserInDB(userId, name, email);
         signInRedirect(userId);
       }
