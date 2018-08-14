@@ -25,7 +25,7 @@ function renderPostsList(snapshot) {
   });
 }
 function createPostItem(text, key) {
-  let content = `<div class="box"><p>${text}</p><button class="edit" data-id=${key}>EDITAR</button><button class="delete" data-id=${key}>DELETAR</button></div>`;
+  let content = `<div class="box"><p>${text}</p><button class="edit btn-warning" data-id=${key}>EDITAR<i class="icon-pencil"></i></button><button class="delete btn-danger" data-id=${key}>DELETAR<i class="icon-trash"></i></button></div>`;
   $('.posts').prepend(content);
 
   $(`.delete[data-id='${key}']`).click(function () {

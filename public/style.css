@@ -104,28 +104,18 @@ form legend{
   outline: 0;
 }
 
-.privacy{
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #1da1f2;
-  font-weight: 600;
-  color: #fff;
-  border-radius: 5px;
-}
-
-.privacy:hover, .privacy:focus{
-  background-color: #0F557F;
-  cursor: pointer;
-  outline: 0;
-}
-
 .buttons-feed{
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-a i{
-  margin-right: 1vw;
+.edit, .delete{
+  border-radius: 5px;
+  padding: 2px 3px;
+  margin-left: 1%;
 }
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
