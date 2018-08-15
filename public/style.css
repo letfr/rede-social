@@ -17,7 +17,7 @@
   background-color: #f5f5f5;
 }
 .login-page form{
-  width: 60%;
+  width: 65%;
 }
 .pulse {
   animation: pulse 1.5s infinite;
@@ -36,18 +36,16 @@
   margin-left: 1vh;
   color: #5E0000;
 }
-form{
-  border: 2px solid #9E9577;
+.login, .register{
+  border: 1px solid rgb(209, 201, 174);
   border-radius: 10px;
-  margin: 1%;
+  margin: 5px;
+  padding: 20px;
+
 }
-form legend{
+.login legend, .register legend{
   color: #5E0000;
   margin-top: 2vh;
-}
-.form{
-  height: 2px;
-  background-color: #9E9577;
 }
 .login-page button{
   background-color: #e2d9ba;
@@ -87,24 +85,29 @@ form legend{
   width: 100%;
   border-bottom: 2px solid #c9c9c9;
 }
-.tweet-input:focus{
-  border-bottom: 2px solid #1da1f2;
+.posts-input:focus{
+  border-bottom: 2px solid #5E0000;
   outline: 0;
+}
+.btn{
+  padding: 10px !important; 
 }
 .btn-post{
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #1da1f2;
+  background-color: #5E0000;
   font-weight: 600;
   color: #fff;
   border-radius: 5px;
 }
 .btn-post:hover, .btn-post:focus{
-  background-color: #0F557F;
+  background-color: rgba(94, 0, 0, 0.637);
   cursor: pointer;
   outline: 0;
 }
-
+select:focus, option:focus{
+  outline-color: #5E0000;
+}
 .buttons-feed{
   display: flex;
   flex-direction: row;
