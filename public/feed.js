@@ -4,8 +4,11 @@ const USER_ID = getUserId();
 $(document).ready(function () {
   getUserPostsFromDB();
   $(".btn-post").on("click", addPost);
+  friendsPosts();
+  users();
+  wineOption();
+  // for ( wine of db ) { $("body").append(`<img src="${wine.url}" width="100") >`)};
 })
-
 
 function getUserId() {
   var queryString = window.location.search;
@@ -21,11 +24,11 @@ function getUserPostsFromDB() {
 function renderPostsList(snapshot) {
   snapshot.forEach(function (childSnapshot) {
     var post = childSnapshot.val();
-    createPostItem(post.text, childSnapshot.key);
+    createPostItem(post.text, childSnapshot.key, post.wine);
   });
 }
-function createPostItem(text, key) {
-  let content = `<div class="box"><p>${text}</p><button class="edit btn-warning" data-id=${key}>EDITAR<i class="icon-pencil"></i></button><button class="delete btn-danger" data-id=${key}>DELETAR<i class="icon-trash"></i></button></div>`;
+function createPostItem(text, key, wine) {
+  let content = `<div class="box"><h2 data-id=${key}>${wine}</h2><p class="post-text" data-id=${key}>${text}</p><button class="edit btn-warning" data-id=${key}>EDITAR<i class="icon-pencil"></i></button><button class="delete btn-danger" data-id=${key}>DELETAR<i class="icon-trash"></i></button></div>`;
   $('.posts').prepend(content);
 
   $(`.delete[data-id='${key}']`).click(function () {
@@ -33,8 +36,18 @@ function createPostItem(text, key) {
     deletePost(p, key);
   });
 
-  $(`.edit[data-id='${key}']`).click(inputEditPost);
-  $('.save-changes').click(editPost($('.edit-input').val()));
+  $(`.edit[data-id='${key}']`).click(function () {
+    $(this).parent().append(`<textarea class="posts-input edit-input" type="text" rows="4"></textarea><button class="save-changes" data-id="${key}">ATUALIZAR</button>`);
+    $(this).off('click');
+
+    $(`.save-changes[data-id='${key}']`).click(function () {
+      var changed = $(".edit-input").val();
+      editPost(changed, key);
+      $(`.post-text[data-id=${key}]`).text(changed);
+      $(".edit-input").hide();
+      $(this).hide();
+    });
+  });
 }
 function deletePost(p, key) {
   deletePostFromDB(key);
@@ -46,30 +59,60 @@ function deletePostFromDB(key) {
 function addPost(event) {
   event.preventDefault();
   const postInput = $(".posts-input").val();
+  let inputValue = $("#inputState").val();
+  let wineName = $("#wines").val();
+  console.log(inputValue);
   let isTextEmpty = postInput === "";
   if (!isTextEmpty) {
-    var newPost = addPostToDB(postInput);
+    var newPost = addPostToDB(postInput, inputValue, wineName);
     var postId = newPost.getKey();
-    createPostItem(postInput, postId);
+    createPostItem(postInput, postId, wineName);
   }
   $(".posts-input").val("");
 }
-function addPostToDB(text) {
-  return database.ref('posts/' + USER_ID).push({ text: text });
+function addPostToDB(text, filter, wine) {
+  return database.ref('posts/' + USER_ID).push({ text: text, filter: filter , wine: wine});
 }
-function inputEditPost() {
-  $(this).off('click');
-  $(this).parent().append(`<textarea class="posts-input edit-input" type="text" rows="4"></textarea><button class="save-changes">ATUALIZAR</button>`)
-}
-function editPost(changed) {
+function editPost(changed, key) {
   var postData = {
     text: changed
   };
-
   var newPostKey = firebase.database().ref().child('posts').push().key;
-
-  var updates = {};
-  updates['/posts/' + USER_ID] = postData;
-  return firebase.database().ref().update(updates);
-
+  return firebase.database().ref(`posts/${USER_ID}/${key}`).update(postData);
+}
+function changePost(changed, key) {
+  $(`.post-text[data-id=${key}]`).val(changed);
+  let value = $(`.post-text[data-id=${key}]`).val();
+  console.log(key);
+}
+function friendsPosts() {
+  database.ref('posts/').once('value')
+    .then(snapshot => {
+      snapshot.forEach(function (childSnapshot) {
+        //filtro do post
+        childSnapshot.forEach(child => {
+          if (child.val().filter === "todos" || child.val().filter === "amigos") {
+            let content = `<div class="box"><h2 data-id=${childSnapshot.key}>${child.val().wine}</h2><p class="post-text" data-id=${childSnapshot.key}>${child.val().text}</p></div>`;
+            $('.posts').prepend(content);
+          }
+        })
+      })
+    })
+}
+// nome usuario
+function users(){
+database.ref('users/').once('value')
+  .then(snapshot => {
+    snapshot.forEach(childSnapshot => {
+      $(".btn-friends").click(function () {
+        $(this).off('click');
+        $("#friends").append(`<a href="#" class="m-3" id="navbarSupportedContent">${childSnapshot.val().name}</a>`);
+      })
+    })
+  })
+}
+function wineOption(){
+  for ( wine of db ) { 
+    $("#wines").append(`<option value="${wine.wine}">${wine.wine}</option>`)
+  }
 }
