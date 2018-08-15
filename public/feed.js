@@ -61,7 +61,6 @@ function addPost(event) {
   const postInput = $(".posts-input").val();
   let inputValue = $("#inputState").val();
   let wineName = $("#wines").val();
-  console.log(inputValue);
   let isTextEmpty = postInput === "";
   if (!isTextEmpty) {
     var newPost = addPostToDB(postInput, inputValue, wineName);
@@ -93,7 +92,7 @@ function friendsPosts() {
         childSnapshot.forEach(child => {
           if (child.val().filter === "todos" || child.val().filter === "amigos") {
             let content = `<div class="box"><h2 data-id=${childSnapshot.key}>${child.val().wine}</h2><p class="post-text" data-id=${childSnapshot.key}>${child.val().text}</p></div>`;
-            $('.posts').prepend(content);
+            $('.posts').append(content);
           }
         })
       })
