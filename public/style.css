@@ -114,10 +114,26 @@ select:focus, option:focus{
   justify-content: space-between;
 }
 
-.edit, .delete{
+.edit, .delete, .save-changes{
   border-radius: 5px;
   padding: 2px 3px;
   margin-left: 1%;
+}
+
+.btn-option{
+  background-color: #5E0000;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-option:hover, .btn-option:focus{
+  background-color: rgba(94, 0, 0, 0.637);
+  cursor: pointer;
+  outline: 0;
+}
+
+.btn-option i{
+  margin-right: 1vh;
 }
 
 @-webkit-keyframes pulse {
@@ -153,3 +169,10 @@ select:focus, option:focus{
   }
 }
 
+@media screen and (max-width: 482px){
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

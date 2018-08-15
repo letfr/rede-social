@@ -28,7 +28,7 @@ function renderPostsList(snapshot) {
   });
 }
 function createPostItem(text, key, wine) {
-  let content = `<div class="box"><h2 data-id=${key}>${wine}</h2><p class="post-text" data-id=${key}>${text}</p><button class="edit btn-warning" data-id=${key}>EDITAR<i class="icon-pencil"></i></button><button class="delete btn-danger" data-id=${key}>DELETAR<i class="icon-trash"></i></button></div>`;
+  let content = `<div class="box"><h2 data-id=${key}>${wine}</h2><p class="post-text" data-id=${key}>${text}</p><button class="edit btn-warning icon-pencil" data-id=${key}>EDITAR</button><button class="delete btn-danger icon-trash" data-id=${key}>DELETAR</button></div>`;
   $('.posts').prepend(content);
 
   $(`.delete[data-id='${key}']`).click(function () {
@@ -37,7 +37,7 @@ function createPostItem(text, key, wine) {
   });
 
   $(`.edit[data-id='${key}']`).click(function () {
-    $(this).parent().append(`<textarea class="posts-input edit-input" type="text" rows="4"></textarea><button class="save-changes" data-id="${key}">ATUALIZAR</button>`);
+    $(this).parent().append(`<textarea class="posts-input edit-input" type="text" rows="4"></textarea><button class="save-changes btn-warning icon-download" data-id="${key}">ATUALIZAR</button>`);
     $(this).off('click');
 
     $(`.save-changes[data-id='${key}']`).click(function () {
@@ -105,7 +105,16 @@ database.ref('users/').once('value')
     snapshot.forEach(childSnapshot => {
       $(".btn-friends").click(function () {
         $(this).off('click');
-        $("#friends").append(`<a href="#" class="m-3" id="navbarSupportedContent">${childSnapshot.val().name}</a>`);
+        $("#friends").append(`
+          <ul>
+            <li>
+              <div>
+                <span class="m-3" id="navbarSupportedContent">${childSnapshot.val().name}</span>
+                <a href="#" data-user-id="${key}">Seguir</a>
+              </div>
+            </li>
+          <ul>
+        `);
       })
     })
   })
