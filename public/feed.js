@@ -6,6 +6,7 @@ $(document).ready(function () {
   $(".btn-post").on("click", addPost);
 })
 
+
 function getUserId() {
   var queryString = window.location.search;
   var regExpForUserId = new RegExp(/\?userId=(.+)/);
@@ -33,6 +34,7 @@ function createPostItem(text, key) {
   });
 
   $(`.edit[data-id='${key}']`).click(inputEditPost);
+  $('.save-changes').click(editPost($('.edit-input').val()));
 }
 function deletePost(p, key) {
   deletePostFromDB(key);
@@ -55,19 +57,19 @@ function addPost(event) {
 function addPostToDB(text) {
   return database.ref('posts/' + USER_ID).push({ text: text });
 }
-function inputEditPost(){
-  $(this).parent().append(`<textarea class="posts-input edit-input" type="text" rows="4"></textarea>`)
+function inputEditPost() {
+  $(this).off('click');
+  $(this).parent().append(`<textarea class="posts-input edit-input" type="text" rows="4"></textarea><button class="save-changes">ATUALIZAR</button>`)
 }
-function editPost() {
+function editPost(changed) {
   var postData = {
-    text: text
+    text: changed
   };
 
   var newPostKey = firebase.database().ref().child('posts').push().key;
 
   var updates = {};
-  updates['/posts/' + newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  updates['/posts/' + USER_ID] = postData;
   return firebase.database().ref().update(updates);
 
 }
