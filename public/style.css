@@ -6,7 +6,6 @@
   box-sizing: border-box;
   font-family: 'Pathway Gothic One', sans-serif;
 }
-
 .intro{
   background-color: #2b2b2b;
   display: flex;
@@ -14,10 +13,14 @@
 }
 .login-page{
   display: none;
-  background-color: #f5f5f5;
+  background-color: #fff;
 }
 .login-page form{
   width: 65%;
+}
+.btn-login, .btn-sign-up{
+  width: 20%;
+  margin: 10px auto;
 }
 .pulse {
   animation: pulse 1.5s infinite;
@@ -28,6 +31,9 @@
   -webkit-animation-name: pulse;
   animation-name: pulse;
 }
+.header{
+  padding-bottom: 60px;
+}
 .header img{
   margin-top: 1vw;
 }
@@ -37,19 +43,15 @@
   color: #5E0000;
 }
 .login, .register{
-  border: 1px solid rgb(209, 201, 174);
-  border-radius: 10px;
-  margin: 5px;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   padding: 20px;
-
+  margin: 5px 0;
+  border-radius: 3px;
+  padding: 20px;
 }
 .login legend, .register legend{
   color: #5E0000;
   margin-top: 2vh;
-}
-.login-page button{
-  background-color: #e2d9ba;
-  color: #5E0000;
 }
 .box{
   background-color: #fff;
@@ -96,11 +98,16 @@
   margin-top: 10px;
   padding: 10px 20px;
   background-color: #5E0000;
-  font-weight: 600;
   color: #fff;
   border-radius: 5px;
 }
-.btn-post:hover, .btn-post:focus{
+.btn-intro{
+  padding: 10px;
+  background-color: #5E0000;
+  color: #fff;
+  border-radius: 5px;
+}
+.btn-post:hover, .btn-intro:hover, .btn-post:focus{
   background-color: rgba(94, 0, 0, 0.637);
   cursor: pointer;
   outline: 0;
@@ -113,29 +120,24 @@ select:focus, option:focus{
   flex-direction: row;
   justify-content: space-between;
 }
-
 .edit, .delete, .save-changes{
   border-radius: 5px;
   padding: 2px 3px;
   margin-left: 1%;
 }
-
 .btn-option, .btn-modal, .btn-friends{
   background-color: #5E0000;
   color: #fff;
   font-weight: 600;
 }
-
 .btn-option:hover, .btn-option:focus{
   background-color: rgba(94, 0, 0, 0.637);
   cursor: pointer;
   outline: 0;
 }
-
 .btn-option i{
   margin-right: 1vh;
 }
-<<<<<<< HEAD
 .user-box{
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   padding: 15px 10px;
@@ -154,44 +156,34 @@ li{
   border-radius: 3px;
   padding: 10px;
 }
-=======
-
 .btn-modal:hover, .btn-modal:focus{
   background-color: rgba(94, 0, 0, 0.637);
   cursor: pointer;
   outline: 0;
 }
-
 .icon-user{
   font-size: 60px;
 }
-
 .modal-body i{
   font-size: 60px;
 }
-
 .modal-body span{
   font-size: 20px;
   display: flex;
   justify-content: center;
 }
-
 .icon-user-add{
   margin-right: 1vh;
 }
-
 li{
   list-style: none;
   color: #5E0000;
   font-size: 18px;
   font-weight: 600;
 }
-
 .list-users i{
   margin-left: 1vh;
 }
-
->>>>>>> 40ec21d4491638130d651506b449994979caf880
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);

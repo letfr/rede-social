@@ -7,6 +7,8 @@ $(document).ready(function () {
   $(".sign-up-button").click(signUpClick);
   $(".sign-in-button").click(signInClick);
 
+  $(".btn-sign-up").click( function(){ $(".register").show() });
+  $(".btn-login").click( function(){ $(".login").show() });
 });
 
 function signUpClick(event) {
