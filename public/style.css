@@ -135,7 +135,24 @@ select:focus, option:focus{
 .btn-option i{
   margin-right: 1vh;
 }
-
+.user-box{
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  padding: 15px 10px;
+  margin: 5px 0;
+  border-radius: 3px;
+}
+li{
+  list-style: none;
+}
+#friends{
+  width: 90%;
+  margin: 10px auto;
+}
+.btn-follow{
+  background-color: #120c47;
+  border-radius: 3px;
+  padding: 10px;
+}
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);

@@ -4,7 +4,7 @@ const USER_ID = getUserId();
 $(document).ready(function () {
   getUserPostsFromDB();
   $(".btn-post").on("click", addPost);
-  friendsPosts();
+  publicPosts();
   users();
   wineOption();
   // for ( wine of db ) { $("body").append(`<img src="${wine.url}" width="100") >`)};
@@ -70,7 +70,7 @@ function addPost(event) {
   $(".posts-input").val("");
 }
 function addPostToDB(text, filter, wine) {
-  return database.ref('posts/' + USER_ID).push({ text: text, filter: filter , wine: wine});
+  return database.ref('posts/' + USER_ID).push({ text: text, filter: filter, wine: wine });
 }
 function editPost(changed, key) {
   var postData = {
@@ -84,43 +84,65 @@ function changePost(changed, key) {
   let value = $(`.post-text[data-id=${key}]`).val();
   console.log(key);
 }
-function friendsPosts() {
+function publicPosts() {
+  let friendshipActive = [];
+  database.ref('friendship/').once('value')
+    .then(snapshot => {
+      snapshot.forEach(childSnapshot => {
+        if (childSnapshot.key === USER_ID) {
+          childSnapshot.forEach(child => {
+            friendshipActive.push(child.val().friendId)
+          })
+        }
+      })
+    })
   database.ref('posts/').once('value')
     .then(snapshot => {
-      snapshot.forEach(function (childSnapshot) {
-        //filtro do post
+      snapshot.forEach(childSnapshot => {
         childSnapshot.forEach(child => {
-          if (child.val().filter === "todos" || child.val().filter === "amigos") {
-            let content = `<div class="box"><h2 data-id=${childSnapshot.key}>${child.val().wine}</h2><p class="post-text" data-id=${childSnapshot.key}>${child.val().text}</p></div>`;
-            $('.posts').append(content);
+          if (childSnapshot.key !== USER_ID) {
+            // todos
+            if (child.val().filter === "todos") {
+              createFriendPost(childSnapshot.key, child.val().wine, child.val().text);
+            }
+            // amigos
+            if (friendshipActive.indexOf(childSnapshot.key) >= 0) {
+              if (child.val().filter === "amigos") {
+                createFriendPost(childSnapshot.key, child.val().wine, child.val().text);
+              }
+            }
           }
         })
       })
     })
 }
-// nome usuario
-function users(){
-database.ref('users/').once('value')
-  .then(snapshot => {
-    snapshot.forEach(childSnapshot => {
-      $(".btn-friends").click(function () {
-        $(this).off('click');
-        $("#friends").append(`
-          <ul>
-            <li>
-              <div>
-                <span class="m-3" id="navbarSupportedContent">${childSnapshot.val().name}</span>
-                <a href="#" data-user-id="${key}">Seguir</a>
-              </div>
-            </li>
-          <ul>
-        `);
+function createFriendPost(key, wine, text) {
+  let content = `<div class="box"><h2 data-id=${key}>${wine}</h2><p class="post-text" data-id=${key}>${text}</p></div>`;
+  $('.posts').append(content);
+}
+function users() {
+  database.ref('users/').once('value')
+    .then(snapshot => {
+      snapshot.forEach(childSnapshot => {
+        $(".btn-friends").click(function () {
+          $(this).off('click');
+          let key = childSnapshot.key;
+          if (key !== USER_ID) {
+            $("#friends").append(`<div class="user-box"><li><span class="m-2" id="navbarSupportedContent">${childSnapshot.val().name}</span><a href="#" class="btn-follow text-white" data-user-id="${key}">Seguir</a></li></div>`);
+
+            $(`.btn-follow[data-user-id=${key}]`).click(function () {
+              if ($(this).text() === "Seguir") {
+                database.ref('friendship/' + USER_ID).push({ friendId: key });
+                $(this).text("Seguindo").css("background-color", "green").off("click");
+              }
+            })
+          }
+        })
       })
     })
-  })
 }
-function wineOption(){
-  for ( wine of db ) { 
+function wineOption() {
+  for (wine of db) {
     $("#wines").append(`<option value="${wine.wine}">${wine.wine}</option>`)
   }
 }
