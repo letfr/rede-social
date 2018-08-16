@@ -100,25 +100,34 @@ function friendsPosts() {
 }
 // nome usuario
 function users(){
-database.ref('users/').once('value')
-  .then(snapshot => {
-    snapshot.forEach(childSnapshot => {
-      $(".btn-friends").click(function () {
-        $(this).off('click');
-        $("#friends").append(`
+  database.ref('users/').once('value')
+    .then(snapshot => {
+      snapshot.forEach(childSnapshot => {
+        $(".btn-friends").click(function () {
+          $(this).off('click');
+          $("#friends").append(`
           <ul>
-            <li>
-              <div>
-                <span class="m-3" id="navbarSupportedContent">${childSnapshot.val().name}</span>
-                <a href="#" data-user-id="${key}">Seguir</a>
-              </div>
-            </li>
-          <ul>
-        `);
+            <li href="#" class="ml-3 list-users" data-toggle="modal" data-target="#modalFriends">${childSnapshot.val().name}</li>
+          </ul>
+          `);
+        })
       })
     })
-  })
-}
+  }
+
+  function createUsers(name, key) {
+    if (key !== USER_ID) {
+      $("#friends-body").append(`<span>${name}</span>`);
+      $("#friends-footer").append('<button data-user-id="${key}">seguir</button>');
+    }
+  
+    $(`button[data-user-id=${key}]`).click(function () {
+      database.ref('friendship/' + USER_ID).push({
+        friendId: key
+      });
+    })
+  }
+
 function wineOption(){
   for ( wine of db ) { 
     $("#wines").append(`<option value="${wine.wine}">${wine.wine}</option>`)

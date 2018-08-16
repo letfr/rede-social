@@ -120,7 +120,7 @@ select:focus, option:focus{
   margin-left: 1%;
 }
 
-.btn-option{
+.btn-option, .btn-modal, .btn-friends{
   background-color: #5E0000;
   color: #fff;
   font-weight: 600;
@@ -134,6 +134,38 @@ select:focus, option:focus{
 
 .btn-option i{
   margin-right: 1vh;
+}
+
+.btn-modal:hover, .btn-modal:focus{
+  background-color: rgba(94, 0, 0, 0.637);
+  cursor: pointer;
+  outline: 0;
+}
+
+.icon-user{
+  font-size: 60px;
+}
+
+.modal-body i{
+  font-size: 60px;
+}
+
+.modal-body span{
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-user-add{
+  margin-right: 1vh;
+}
+
+li{
+  list-style: none;
+  color: #5E0000;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: -3%;
 }
 
 @-webkit-keyframes pulse {

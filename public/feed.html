@@ -15,28 +15,75 @@
 </head>
 
 <body>
-  <header>
-    <nav class="pt-4 pb-4 pl-5 pr-5 navbar navbar-expand-lg navbar-light col-md-12 col-ms-12 m-0">
-      <div class="container">
-        <a href="#" class="navbar-brand">
+    <header>
+      <nav class="pt-4 pb-4 pl-5 pr-5 navbar navbar-expand-lg navbar-light col-md-12 col-ms-12 m-0">
+        <div class="container">
           <h1>NEWSFEED</h1>
-        </a>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-option"><i class="icon-id-card"></i>Perfil</button>
-          <button type="button" class="btn btn-option"><i class="icon-users"></i>Amigos</button>
-          <button type="button" class="btn btn-option"><i class="icon-logout"></i>Log Out</button>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-option" data-toggle="modal" data-target="#modalProfile"><i class="icon-id-card"></i>Perfil</button>
+            <button type="button" class="btn btn-option btn-friends"><i class="icon-users"></i>Usuários</button>
+            <button type="button" class="btn btn-friends btn-option"><i class="icon-logout"></i>Log Out</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+  <section id="modal">
+    <div class="modal fade" id="modalProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center">
+            <h4 class="modal-title" id="exampleModalCenterTitle">Perfil</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <i class="icon-user d-flex justify-content-center"></i>
+            <hr>
+            <span class="d-flex justify-content-center" id="nameModal"></span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
-    </nav>
-    </header>
-    <section id="friends">
-    </section>
-    <section class="main">
-      <div class="box box-post">
-        <select id="wines" class="form-control">
-          <option value="" selected>Selecione o vinho</option>
-        </select>
-        <textarea type="text" rows="3" placeholder="Dê sua opinião" class="posts-input mt-3 increase"></textarea>
+    </div>
+
+    <div class="modal fade" id="modalFriends" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+              <h4 class="modal-title" id="exampleModalCenterTitle">Amizades</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="friends-body">
+              <i class="icon-users d-flex justify-content-center"></i>
+              <hr>
+              <span>Deseja seguir este usuário e passar a ver suas postagens?</span>
+              <span class="d-flex justify-content-center" id="nameModal"></span>
+            </div>
+            <div class="modal-footer" id="friends-footer">
+              <button type="button" class="btn btn-modal" data-dismiss="modal" data-user-id="${key}"><i class="icon-user-add"></i>Seguir</button>     
+              <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+  <section id="friends">
+  </section>
+  
+  <section class="main">
+    <div class="box box-post">
+      <select id="wines" class="form-control">
+        <option value="" selected>Selecione o vinho</option>
+      </select>
+      <textarea type="text" rows="3" placeholder="Dê sua opinião" class="posts-input mt-3 increase"></textarea>
         <div class="container">
           <div class="buttons-feed align-items-center">
             <button class="btn-post">POSTAR</button>
@@ -54,7 +101,7 @@
 
       <div class="posts">
       </div>
-    </section>
+  </section>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
