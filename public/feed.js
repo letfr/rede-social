@@ -149,7 +149,7 @@ function users() {
 function createUsers(name, key) {
   if (key !== USER_ID) {
     $("#friends-body").append(`<span>${name}</span>`);
-    $("#friends-footer").append('<button data-user-id="${key}">seguir</button>');
+    $("#friends-footer").append('<button data-user-id="${key}">Seguir</button>');
   }
 
   $(`button[data-user-id=${key}]`).click(function () {

@@ -135,7 +135,7 @@ select:focus, option:focus{
 .btn-option i{
   margin-right: 1vh;
 }
-<<<<<<< HEAD
+
 .user-box{
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
   padding: 15px 10px;
@@ -145,53 +145,32 @@ select:focus, option:focus{
 li{
   list-style: none;
 }
+
+li p{
+  font-size: 24px;
+  margin-bottom: 2vw;
+}
+
 #friends{
   width: 90%;
   margin: 10px auto;
 }
+
 .btn-follow{
   background-color: #120c47;
   border-radius: 3px;
   padding: 10px;
-}
-=======
-
-.btn-modal:hover, .btn-modal:focus{
-  background-color: rgba(94, 0, 0, 0.637);
-  cursor: pointer;
-  outline: 0;
-}
-
-.icon-user{
-  font-size: 60px;
 }
 
 .modal-body i{
   font-size: 60px;
 }
 
-.modal-body span{
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
+.filter-select{
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
-.icon-user-add{
-  margin-right: 1vh;
-}
-
-li{
-  list-style: none;
-  color: #5E0000;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.list-users i{
-  margin-left: 1vh;
-}
-
->>>>>>> 40ec21d4491638130d651506b449994979caf880
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
@@ -227,6 +206,11 @@ li{
 
 @media screen and (max-width: 482px){
   .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #filter-select{
     display: flex;
     flex-direction: column;
     justify-content: center;

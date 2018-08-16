@@ -14,7 +14,7 @@
   <title>Feed</title>
 </head>
 
-<body>
+<body id="feed-page">
   <header>
     <nav class="pt-4 pb-4 pl-5 pr-5 navbar navbar-expand-lg navbar-light col-md-12 col-ms-12 m-0">
       <div class="container">
@@ -23,14 +23,14 @@
           <button type="button" class="btn btn-option" data-toggle="modal" data-target="#modalProfile">
             <i class="icon-id-card"></i>Perfil</button>
           <button type="button" class="btn btn-option btn-friends" data-toggle="modal" data-target="#modalFriends">
-            <i class="icon-users"></i>Usuários</button>
+            <i class="icon-users-1"></i>Usuários</button>
           <button type="button" class="btn btn-friends btn-option">
             <i class="icon-logout"></i>Log Out</button>
         </div>
       </div>
     </nav>
   </header>
-  </div>
+
   <section id="modal">
     <div class="modal fade" id="modalProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -75,8 +75,6 @@
     </div>
   </section>
 
-  <!-- <section id="friends">
-      </section> -->
 
   <section class="main">
     <div class="box box-post">
@@ -96,6 +94,18 @@
             </select>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div id="filter-select col-6">
+      <div class="container filter-select d-flex justify-content-center">
+        <h4>Ver as postagens de:</h4>
+        <select class="custom-select col-4 ml-2">
+          <option selected>Ver postagem de</option>
+          <option value="1">Todos</option>
+          <option value="2">Amigos</option>
+          <option value="3">Somente eu</option>
+        </select>
       </div>
     </div>
 
