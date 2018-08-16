@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="Shorticon.png" type="image/x-png" />
   <link rel="stylesheet" href="style.css">
   <link href="https://file.myfontastic.com/WXboJnGWYYA5Gm2VnPbBsm/icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -99,12 +100,11 @@
 
     <div id="filter-select col-6">
       <div class="container filter-select d-flex justify-content-center">
-        <h4>Ver as postagens de:</h4>
-        <select class="custom-select col-4 ml-2">
-          <option selected>Ver postagem de</option>
-          <option value="1">Todos</option>
-          <option value="2">Amigos</option>
-          <option value="3">Somente eu</option>
+        <h4 class="m-auto text-white">Filtrar postagens</h4>
+        <select id="select-filter" class="custom-select col-4 ml-2  m-auto">
+          <option value='todos' selected>Todos</option>
+          <option value='amigos'>Amigos</option>
+          <option value='privado'>Somente eu</option>
         </select>
       </div>
     </div>

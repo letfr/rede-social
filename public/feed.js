@@ -63,13 +63,13 @@ function addPost(event) {
   let isTextEmpty = postInput === "";
   if (!isTextEmpty) {
     var newPost = addPostToDB(postInput, inputValue, wineName);
-    var postId = newPost.getKey();    
+    var postId = newPost.getKey();
     createPostItem(postInput, postId, wineName, inputValue);
   }
   $(".posts-input").val("");
 }
 function addPostToDB(text, filter, wine) {
-  return database.ref('posts/' + USER_ID).push({ text: text, filter: filter, wine: wine});
+  return database.ref('posts/' + USER_ID).push({ text: text, filter: filter, wine: wine });
 }
 function editPost(changed, key) {
   var postData = {
@@ -102,6 +102,7 @@ function posts() {
         childSnapshot.forEach(child => {
           if (childSnapshot.key !== USER_ID) {
             // todos
+            let select = $("#select-filter").val();
             if (child.val().filter === "todos") {
               createFriendPost(childSnapshot.key, child.val().wine, child.val().text);
             }
