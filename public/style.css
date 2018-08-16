@@ -20,13 +20,17 @@
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.582);
 }
+
+#main{
+  background-image: url("bg1.jpg");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-attachment: scroll;
+}
+
 .login-page{
   display: none;
   position: relative;
-  background-image: url("bg1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
   width: 100vw;
   height: 100vh;
 }
