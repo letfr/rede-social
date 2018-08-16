@@ -18,52 +18,99 @@
   <header>
     <nav class="pt-4 pb-4 pl-5 pr-5 navbar navbar-expand-lg navbar-light col-md-12 col-ms-12 m-0">
       <div class="container">
-        <a href="#" class="navbar-brand">
-          <h1>NEWSFEED</h1>
-        </a>
+        <h1>NEWSFEED</h1>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-option"><i class="icon-id-card"></i>Perfil</button>
-          <button type="button" class="btn btn-option btn-friends"><i class="icon-users"></i>Amigos</button>
-          <button type="button" class="btn btn-option"><i class="icon-logout"></i>Log Out</button>
+          <button type="button" class="btn btn-option" data-toggle="modal" data-target="#modalProfile">
+            <i class="icon-id-card"></i>Perfil</button>
+          <button type="button" class="btn btn-option btn-friends" data-toggle="modal" data-target="#modalFriends">
+            <i class="icon-users"></i>Usuários</button>
+          <button type="button" class="btn btn-friends btn-option">
+            <i class="icon-logout"></i>Log Out</button>
         </div>
       </div>
     </nav>
-    </header>
-    <section id="friends" class="d-flex justify-content-around flex-wrap">
-    </section>
-    <section class="main">
-      <div class="box box-post">
-        <select id="wines" class="form-control">
-          <option value="" selected>Selecione o vinho</option>
-        </select>
-        <textarea type="text" rows="3" placeholder="Dê sua opinião" class="posts-input mt-3 increase"></textarea>
-        <div class="container">
-          <div class="buttons-feed align-items-center">
-            <button class="btn-post">POSTAR</button>
-            <div class="privacy form-group col-md-3">
-              <label for="inputState">Privacidade</label>
-              <select id="inputState" class="form-control">
-                <option value="todos" selected>Todos</option>
-                <option value="amigos">Amigos</option>
-                <option value="privado">Somente eu</option>
-              </select>
-            </div>
+  </header>
+  </div>
+  <section id="modal">
+    <div class="modal fade" id="modalProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center">
+            <h4 class="modal-title" id="exampleModalCenterTitle">Perfil</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <i class="icon-user d-flex justify-content-center"></i>
+            <hr>
+            <span class="d-flex justify-content-center" id="nameModal"></span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="posts">
+    <div class="modal fade" id="modalFriends" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center">
+            <h4 class="modal-title" id="exampleModalCenterTitle">Usuários</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="friends-body">
+            <div id="friends" class="d-flex justify-content-around flex-wrap">
+            </div>
+            <span class="d-flex justify-content-center" id="nameModal"></span>
+          </div>
+          <div class="modal-footer" id="friends-footer">
+            <button type="button" class="btn btn-modal" data-dismiss="modal">Fechar</button>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
+
+  <!-- <section id="friends">
+      </section> -->
+
+  <section class="main">
+    <div class="box box-post">
+      <select id="wines" class="form-control">
+        <option value="" selected>Selecione o vinho</option>
+      </select>
+      <textarea type="text" rows="3" placeholder="Dê sua opinião" class="posts-input mt-3 increase"></textarea>
+      <div class="container">
+        <div class="buttons-feed align-items-center">
+          <button class="btn-post">POSTAR</button>
+          <div class="privacy form-group col-md-3">
+            <label for="inputState">Privacidade</label>
+            <select id="inputState" class="form-control">
+              <option value="todos" selected>Todos</option>
+              <option value="amigos">Amigos</option>
+              <option value="privado">Somente eu</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="posts">
+    </div>
+  </section>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
-    <script src="feed.js"></script>
-    <script src="data.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="feed.js"></script>
+  <script src="data.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
 
 </html>

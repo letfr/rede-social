@@ -120,6 +120,7 @@ function createFriendPost(key, wine, text) {
   let content = `<div class="box"><h2 data-id=${key}>${wine}</h2><p class="post-text" data-id=${key}>${text}</p></div>`;
   $('.posts').append(content);
 }
+
 function users() {
   database.ref('users/').once('value')
     .then(snapshot => {
@@ -128,7 +129,10 @@ function users() {
           $(this).off('click');
           let key = childSnapshot.key;
           if (key !== USER_ID) {
-            $("#friends").append(`<div class="user-box"><li><span class="m-2" id="navbarSupportedContent">${childSnapshot.val().name}</span><a href="#" class="btn-follow text-white" data-user-id="${key}">Seguir</a></li></div>`);
+            $("#friends").append(`
+            <ul class="text-center">
+              <li href="#" class="ml-3 list-users"><p class="text-dark">${childSnapshot.val().name}</p><a href="#" class="btn-follow text-white" data-user-id="${key}">Seguir</a></li>
+            </ul>`);
 
             $(`.btn-follow[data-user-id=${key}]`).click(function () {
               if ($(this).text() === "Seguir") {
@@ -141,6 +145,20 @@ function users() {
       })
     })
 }
+
+function createUsers(name, key) {
+  if (key !== USER_ID) {
+    $("#friends-body").append(`<span>${name}</span>`);
+    $("#friends-footer").append('<button data-user-id="${key}">seguir</button>');
+  }
+
+  $(`button[data-user-id=${key}]`).click(function () {
+    database.ref('friendship/' + USER_ID).push({
+      friendId: key
+    });
+  })
+}
+
 function wineOption() {
   for (wine of db) {
     $("#wines").append(`<option value="${wine.wine}">${wine.wine}</option>`)
