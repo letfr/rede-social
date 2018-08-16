@@ -107,7 +107,7 @@ function users(){
           $(this).off('click');
           $("#friends").append(`
           <ul>
-            <li href="#" class="ml-3 list-users" data-toggle="modal" data-target="#modalFriends">${childSnapshot.val().name}</li>
+            <li href="#" class="ml-3 list-users" data-toggle="modal" data-target="#modalFriends">${childSnapshot.val().name}<i class="icon-user-add"></i></li>
           </ul>
           `);
         })

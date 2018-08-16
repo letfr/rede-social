@@ -165,7 +165,10 @@ li{
   color: #5E0000;
   font-size: 18px;
   font-weight: 600;
-  margin-bottom: -3%;
+}
+
+.list-users i{
+  margin-left: 1vh;
 }
 
 @-webkit-keyframes pulse {
