@@ -1,8 +1,8 @@
 var database = firebase.database();
 
 $(document).ready(function () {
-  $('.intro').delay('4000').slideUp('slow');
-  $('.login-page').delay('4000').fadeIn('slow');
+  $('.intro').delay('3000').slideUp('slow');
+  $('.login-page').delay('3000').fadeIn('slow');
 
   $(".sign-up-button").click(signUpClick);
   $(".sign-in-button").click(signInClick);
