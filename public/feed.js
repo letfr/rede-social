@@ -8,6 +8,11 @@ $(document).ready(function () {
   posts();
   users();
   wineOption();
+  $('.input').on('keyup', function () {
+    $('.post-wine-name').parent().stop().fadeOut('fast');
+    $('.post-wine-name').each(search);
+  })
+
 })
 
 function getUserId() {
@@ -33,7 +38,7 @@ function renderPostsList(snapshot) {
 function createPostItem(text, key, wine, filter) {
   let content = `
   <div class="box">
-    <h2 data-id=${key}>${wine}</h2>
+    <h2 class="post-wine-name" data-id=${key}>${wine}</h2>
     <p class="post-text" data-id=${key}>${text}</p>
     <button class="edit btn-warning icon-pencil" data-id=${key}>EDITAR</button>
     <button class="delete btn-danger icon-trash" data-id=${key}>DELETAR</button>
@@ -123,15 +128,13 @@ function posts() {
       snapshot.forEach(childSnapshot => {
         childSnapshot.forEach(child => {
           if (childSnapshot.key !== USER_ID) {
-            // todos
             let select = $("#select-filter").val();
             if (child.val().filter === "todos") {
-              createFriendPost(childSnapshot.key, child.val().wine, child.val().text);
+              createFriendPost(childSnapshot.key, child.val().wine, child.val().text, child.val().filter);
             }
-            // amigos
             if (friendshipActive.indexOf(childSnapshot.key) >= 0) {
               if (child.val().filter === "amigos") {
-                createFriendPost(childSnapshot.key, child.val().wine, child.val().text);
+                createFriendPost(childSnapshot.key, child.val().wine, child.val().text, child.val().filter);
               }
             }
           } else {
@@ -142,11 +145,12 @@ function posts() {
     })
 }
 
-function createFriendPost(key, wine, text) {
+function createFriendPost(key, wine, text, filter) {
   let content = `
   <div class="box">
-    <h2 data-id=${key}>${wine}</h2>
+    <h2 class="post-wine-name" data-id=${key}>${wine}</h2>
     <p class="post-text" data-id=${key}>${text}</p>
+    <small class="d-block mt-3 text-uppercase">${filter}</small>
   </div>`;
   $('.posts').append(content);
 }
@@ -203,6 +207,14 @@ function wineOption() {
 
 function logout() {
   window.location = "index.html";
+}
+
+function search() {
+  let text = $(this).text().toLowerCase();
+  let valor = $('.input').val();
+  if (text.indexOf(valor.toLowerCase()) != -1) {
+    $(this).parent().stop().fadeIn('fast');
+  }
 }
 
 const profile = (name, email) => { $("#profile").append(`
